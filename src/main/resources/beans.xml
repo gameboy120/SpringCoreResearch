@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <bean id="beanPostProcessor" class="com.gengbo.MyBeanPostProcessor">
+    </bean>
+
+    <bean id="instantiationAwareBeanPostProcessor" class="com.gengbo.MyInstantiationAwareBeanPostProcessor">
+    </bean>
+
+    <bean id="beanFactoryPostProcessor" class="com.gengbo.MyBeanFactoryPostProcessor">
+    </bean>
+
+    <bean id="person-1" class="com.gengbo.Person" init-method="myInit"
+          destroy-method="myDestory" scope="singleton" p:name="张三" p:address="广州"
+          p:phone="15900000000" />
+    <bean id="myApplicationContextAware" class="com.gengbo.MyApplicationContextAware"/>
+    <bean id="myBeanNameAware" class="com.gengbo.MyBeanNameAware"/>
+    <bean id="myBeanFactoryAware" class="com.gengbo.MyBeanFactoryAware"/>
+</beans>
