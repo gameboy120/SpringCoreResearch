@@ -3,7 +3,6 @@ package com.gengbo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import sun.misc.Signal;
-import sun.misc.SignalHandler;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,10 +21,9 @@ public class BeanLifeCycle {
         System.out.println("现在开始关闭容器！");
         ((ClassPathXmlApplicationContext)factory).registerShutdownHook();
 
-        Signal.handle(new Signal("USR2"), new SignalHandler() {
-            public void handle(Signal signal) {
-                System.out.println("killed usr2");
-            }
+        Signal.handle(new Signal("USR2"), signal -> {
+            System.out.println("killed usr2");
+            Runtime.getRuntime().exit(0);
         });
         while (true) {
             try {
